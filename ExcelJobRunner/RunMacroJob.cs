@@ -30,6 +30,7 @@ public static class RunMacroJob
 
             try
             {
+                // app.Run("Module1.MacroDemo");
                 app.Run(p.MacroName);
             }
             catch (Exception ex)
@@ -42,7 +43,16 @@ public static class RunMacroJob
             {
                 Directory.CreateDirectory(dir);
             }
-            wb.SaveCopyAs(p.OutputFile);
+            
+            if (string.Equals(p.InputFile, p.OutputFile, StringComparison.OrdinalIgnoreCase))
+            {
+                wb.Save();
+            }
+            else
+            {
+                wb.SaveCopyAs(p.OutputFile);
+            }
+
 
             var message = $"Macro '{p.MacroName}' executed and file saved as {Path.GetFileName(p.OutputFile)}";
             return new JobResult("OK", message);

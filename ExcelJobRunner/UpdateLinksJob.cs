@@ -80,7 +80,15 @@ public static class UpdateLinksJob
                 Directory.CreateDirectory(dir);
             }
 
-            wb.SaveCopyAs(p.OutputFile);
+            if (string.Equals(p.InputFile, p.OutputFile, StringComparison.OrdinalIgnoreCase))
+            {
+                wb.Save();
+            }
+            else
+            {
+                wb.SaveCopyAs(p.OutputFile);
+            }
+
             return new UpdateLinksResult("OK", updated);
         }
         finally
