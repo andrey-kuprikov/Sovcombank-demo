@@ -16,6 +16,7 @@ public class Program
     {
         if (!TryParseArgs(args, out var action, out var paramsPath, out var resultPath, out var error))
         {
+            Console.Write("Invalid arguments");
             WriteResult(resultPath, new JobResult("Fail", error ?? "Invalid arguments"));
             return 1;
         }
