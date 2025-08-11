@@ -24,14 +24,18 @@ public class Program
         try
         {
             var json = File.ReadAllText(paramsPath);
-            if (action == "updateLinks")
+            switch (action)
             {
-                result = UpdateLinksJob.Run((UpdateLinksParams)ParamsParser.Parse(action, json));
-            }
-            else
-            {
-                _ = ParamsParser.Parse(action, json);
-                result = new JobResult("OK", $"{action} parsed");
+                case "updateLinks":
+                    result = UpdateLinksJob.Run((UpdateLinksParams)ParamsParser.Parse(action, json));
+                    break;
+                case "copyColumns":
+                    result = CopyColumnsJob.Run((CopyColumnsParams)ParamsParser.Parse(action, json));
+                    break;
+                default:
+                    _ = ParamsParser.Parse(action, json);
+                    result = new JobResult("OK", $"{action} parsed");
+                    break;
             }
         }
         catch (Exception ex)

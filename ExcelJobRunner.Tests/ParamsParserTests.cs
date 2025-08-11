@@ -28,4 +28,35 @@ public class ParamsParserTests
         Assert.Single(parsed.Cells!);
         Assert.Equal("Sheet1!A1", parsed.Cells![0].Address);
     }
+
+    [Fact]
+    public void CopyColumnsParams_CanBeReadFromJson()
+    {
+        var json = """
+{
+  "sourceFile": "C:\\files\\donor.xlsx",
+  "targetFile": "C:\\files\\acceptor.xlsx",
+  "mappings": [
+    {
+      "source": { "sheet": "Sheet1", "column": "E", "startRow": 2 },
+      "target": { "sheet": "Sheet1", "column": "K", "mode": "append" },
+      "fillFormulaColumns": [ "L", "M" ]
+    },
+    {
+      "source": { "sheet": "Данные", "column": "B", "startRow": 5 },
+      "target": { "sheet": "Отчет", "column": "C", "startRow": 12 }
+    }
+  ]
+}
+""";
+
+        var result = ParamsParser.Parse("copyColumns", json);
+
+        var parsed = Assert.IsType<CopyColumnsParams>(result);
+        Assert.Equal("C:\\files\\donor.xlsx", parsed.SourceFile);
+        Assert.Equal("C:\\files\\acceptor.xlsx", parsed.TargetFile);
+        Assert.Equal(2, parsed.Mappings!.Count);
+        Assert.Equal("Sheet1", parsed.Mappings![0].Source!.Sheet);
+        Assert.Equal("M", parsed.Mappings![0].FillFormulaColumns![1]);
+    }
 }
