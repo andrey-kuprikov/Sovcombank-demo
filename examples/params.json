@@ -1,0 +1,5 @@
+{
+  "inputFile": "C:\\files\\example.xlsx",
+  "cells": [{ "address": "Sheet1!A1", "newValue": "test" }],
+  "outputFile": "C:\\files\\updated.xlsx"
+}

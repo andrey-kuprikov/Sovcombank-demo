@@ -16,6 +16,10 @@
 Утилита вызывается через командную строку с указанием параметров действия и файла параметров. Результат работы сохраняется в отдельный файл и/или выводится в stdout.  
 Рекомендуемый способ использования — с ноды "Execute Command" в n8n.
 
+```
+dotnet run --project ExcelJobRunner -- action=updateLinks params=examples/params.json result=result.json
+```
+
 ### Пример вызова
 ```bat
 ExcelJobRunner.exe action=updateLinks params=C:\tmp\params.json result=C:\tmp\result.json
@@ -116,5 +120,3 @@ ExcelJobRunner.exe action=updateLinks params=C:\tmp\params.json result=C:\tmp\re
 - unit-тесты — для логики забора и подготовки параметров
 - интеграционные тесты с моковыми или реальными файлами — в каталоге `/test`
 - README.md поддерживается в актуальном состоянии
-
----
