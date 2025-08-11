@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelJobRunner", "ExcelJobRunner\ExcelJobRunner.csproj", "{0E312AA9-D504-46D4-B442-550C9E0A1BE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelJobRunner.Tests", "ExcelJobRunner.Tests\ExcelJobRunner.Tests.csproj", "{AA8EA859-1BDE-42DA-AA4C-07EB26578951}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E312AA9-D504-46D4-B442-550C9E0A1BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E312AA9-D504-46D4-B442-550C9E0A1BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E312AA9-D504-46D4-B442-550C9E0A1BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E312AA9-D504-46D4-B442-550C9E0A1BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA8EA859-1BDE-42DA-AA4C-07EB26578951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8EA859-1BDE-42DA-AA4C-07EB26578951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8EA859-1BDE-42DA-AA4C-07EB26578951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8EA859-1BDE-42DA-AA4C-07EB26578951}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
