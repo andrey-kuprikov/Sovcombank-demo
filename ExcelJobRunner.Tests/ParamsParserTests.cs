@@ -59,4 +59,24 @@ public class ParamsParserTests
         Assert.Equal("Sheet1", parsed.Mappings![0].Source!.Sheet);
         Assert.Equal("M", parsed.Mappings![0].FillFormulaColumns![1]);
     }
+
+    [Fact]
+    public void RecalculateParams_CanBeReadFromJson()
+    {
+        var json = """
+{
+  "inputFile": "file.xlsb",
+  "outputFile": "out.xlsb",
+  "sheets": ["Sheet1", "Sheet2"]
+}
+""";
+
+        var result = ParamsParser.Parse("recalculate", json);
+
+        var parsed = Assert.IsType<RecalculateParams>(result);
+        Assert.Equal("file.xlsb", parsed.InputFile);
+        Assert.Equal("out.xlsb", parsed.OutputFile);
+        Assert.Equal(2, parsed.Sheets!.Count);
+        Assert.Equal("Sheet2", parsed.Sheets![1]);
+    }
 }
