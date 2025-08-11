@@ -10,7 +10,7 @@ namespace ExcelJobRunner;
 
 public class Program
 {
-    private static readonly HashSet<string> AllowedActions = new(new[] { "updateLinks", "copyColumns", "recalculate", "findErrors" });
+    private static readonly HashSet<string> AllowedActions = new(new[] { "updateLinks", "copyColumns", "recalculate", "findErrors", "runMacro" });
 
     public static int Main(string[] args)
     {
@@ -35,6 +35,9 @@ public class Program
                     break;
                 case "recalculate":
                     result = RecalculateJob.Run((RecalculateParams)ParamsParser.Parse(action, json));
+                    break;
+                case "runMacro":
+                    result = RunMacroJob.Run((RunMacroParams)ParamsParser.Parse(action, json));
                     break;
                 default:
                     _ = ParamsParser.Parse(action, json);

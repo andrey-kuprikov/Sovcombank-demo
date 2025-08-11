@@ -30,6 +30,7 @@ ExcelJobRunner.exe action=updateLinks params=C:\tmp\params.json result=C:\tmp\re
 2. `findErrors` — поиск ошибок в заданных столбцах листа
 3. `copyColumns` — копирование столбцов (или ячеек) между файлами
 4. `recalculate` — принудительный пересчёт всех формул файла
+5. `runMacro` — запуск указанного макроса VBA и сохранение результата в отдельный файл
 
 ## Формат входных параметров (`params.json`)
 
@@ -77,6 +78,15 @@ ExcelJobRunner.exe action=updateLinks params=C:\tmp\params.json result=C:\tmp\re
 {
   "inputFile": "C:\\files\\calculations.xlsm",
   "outputFile": "C:\\files\\calculations_recalculated.xlsm"
+}
+```
+
+### 5. `runMacro`
+```json
+{
+  "inputFile": "C:\\files\\macrosource.xlsm",
+  "macroName": "Module1.MySpecialMacro",
+  "outputFile": "C:\\files\\macrosource_after_macro.xlsm"
 }
 ```
 

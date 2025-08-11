@@ -21,6 +21,8 @@ public static class ParamsParser
                                ?? throw new JsonException("Invalid copyColumns params"),
             "recalculate" => JsonSerializer.Deserialize<RecalculateParams>(json, Options)
                                ?? throw new JsonException("Invalid recalculate params"),
+            "runMacro" => JsonSerializer.Deserialize<RunMacroParams>(json, Options)
+                               ?? throw new JsonException("Invalid runMacro params"),
             "findErrors" => JsonSerializer.Deserialize<FindErrorsParams>(json, Options)
                                ?? throw new JsonException("Invalid findErrors params"),
             _ => throw new ArgumentException($"Unknown action: {action}")
