@@ -11,7 +11,7 @@ public static class RunMacroJob
 {
     public static JobResult Run(RunMacroParams p)
     {
-        if (p.InputFile == null || p.MacroName == null || p.OutputFile == null)
+        if (p.InputFile == null || p.MacroName == null)
         {
             throw new ArgumentException("Invalid parameters");
         }
@@ -43,7 +43,7 @@ public static class RunMacroJob
             {
                 Directory.CreateDirectory(dir);
             }
-            
+
             if (string.Equals(p.InputFile, p.OutputFile, StringComparison.OrdinalIgnoreCase))
             {
                 wb.Save();

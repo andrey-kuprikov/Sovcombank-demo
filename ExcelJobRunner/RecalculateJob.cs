@@ -11,7 +11,7 @@ public static class RecalculateJob
 {
     public static JobResult Run(RecalculateParams p)
     {
-        if (p.InputFile == null || p.OutputFile == null)
+        if (p.InputFile == null)
         {
             throw new ArgumentException("Invalid parameters");
         }
