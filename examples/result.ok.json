@@ -1,4 +1,10 @@
 {
   "status": "OK",
-  "message": "updateLinks parsed"
+  "updatedCells": [
+    {
+      "address": "Sheet1!A1",
+      "oldValue": "old",
+      "newValue": "test"
+    }
+  ]
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using ExcelJobRunner.Models;
 
 namespace ExcelJobRunner;
 
@@ -18,18 +20,28 @@ public class Program
             return 1;
         }
 
+        object result;
         try
         {
             var json = File.ReadAllText(paramsPath);
-            _ = ParamsParser.Parse(action, json); // ensure parsing succeeds
-            WriteResult(resultPath, new JobResult("OK", $"{action} parsed"));
-            return 0;
+            if (action == "updateLinks")
+            {
+                result = UpdateLinksJob.Run((UpdateLinksParams)ParamsParser.Parse(action, json));
+            }
+            else
+            {
+                _ = ParamsParser.Parse(action, json);
+                result = new JobResult("OK", $"{action} parsed");
+            }
         }
         catch (Exception ex)
         {
-            WriteResult(resultPath, new JobResult("Fail", ex.Message));
-            return 1;
+            result = new JobResult("Fail", ex.Message);
         }
+
+        WriteResult(resultPath, result);
+        var status = GetStatus(result);
+        return string.Equals(status, "OK", StringComparison.OrdinalIgnoreCase) ? 0 : 1;
     }
 
     private static bool TryParseArgs(string[] args, out string action, out string paramsPath, out string resultPath, out string? error)
@@ -69,7 +81,7 @@ public class Program
         return true;
     }
 
-    private static void WriteResult(string path, JobResult result)
+    private static void WriteResult(string path, object result)
     {
         try
         {
@@ -80,7 +92,8 @@ public class Program
             }
             var options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
             {
-                WriteIndented = true
+                WriteIndented = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
             var json = JsonSerializer.Serialize(result, options);
             File.WriteAllText(path, json);
@@ -90,4 +103,7 @@ public class Program
             // suppress exceptions when writing result
         }
     }
+
+    private static string GetStatus(object result) =>
+        result.GetType().GetProperty("Status")?.GetValue(result)?.ToString() ?? "Fail";
 }
