@@ -44,7 +44,7 @@ public static class RunMacroJob
                 Directory.CreateDirectory(dir);
             }
 
-            if (string.Equals(p.InputFile, p.OutputFile, StringComparison.OrdinalIgnoreCase))
+            if (p.OutputFile == null || string.Equals(p.InputFile, p.OutputFile, StringComparison.OrdinalIgnoreCase))
             {
                 wb.Save();
             }
