@@ -79,4 +79,23 @@ public class ParamsParserTests
         Assert.Equal(2, parsed.Sheets!.Count);
         Assert.Equal("Sheet2", parsed.Sheets![1]);
     }
+
+    [Fact]
+    public void RunMacroParams_CanBeReadFromJson()
+    {
+        var json = """
+{
+  "inputFile": "C:\\files\\macrosource.xlsm",
+  "macroName": "Module1.MySpecialMacro",
+  "outputFile": "C:\\files\\macrosource_after_macro.xlsm"
+}
+""";
+
+        var result = ParamsParser.Parse("runMacro", json);
+
+        var parsed = Assert.IsType<RunMacroParams>(result);
+        Assert.Equal("C:\\files\\macrosource.xlsm", parsed.InputFile);
+        Assert.Equal("Module1.MySpecialMacro", parsed.MacroName);
+        Assert.Equal("C:\\files\\macrosource_after_macro.xlsm", parsed.OutputFile);
+    }
 }
