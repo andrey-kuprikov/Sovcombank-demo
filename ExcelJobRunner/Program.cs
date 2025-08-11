@@ -32,6 +32,9 @@ public class Program
                 case "copyColumns":
                     result = CopyColumnsJob.Run((CopyColumnsParams)ParamsParser.Parse(action, json));
                     break;
+                case "recalculate":
+                    result = RecalculateJob.Run((RecalculateParams)ParamsParser.Parse(action, json));
+                    break;
                 default:
                     _ = ParamsParser.Parse(action, json);
                     result = new JobResult("OK", $"{action} parsed");
