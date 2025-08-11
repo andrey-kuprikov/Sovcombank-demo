@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Office.Interop.Excel" Version="15.0.4795.1001" />
+    <PackageReference Include="MicrosoftOfficeCore" Version="15.0.0" NoWarn="NU1701" />
   </ItemGroup>
 
 </Project>
